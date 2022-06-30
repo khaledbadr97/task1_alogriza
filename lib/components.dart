@@ -3,38 +3,26 @@ import 'package:task1_algoriza/on_boarding_model.dart';
 
 Widget buildBoardingItem(BoardingModel model)
 => Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
   children:
   [
-    Expanded(
-      child: Image(
-        image: AssetImage('${model.image}'),
-      ),
+    Image(
+      image: AssetImage('${model.image}'),
     ),
     SizedBox(
-      height: 30.0,
+      height: 20,
     ),
-    Center(
-      child: Text(
-        '${model.title}',
-        style: TextStyle(
-          fontSize: 24.0,
-        ),
+    Text(
+      '${model.title}',
+      style: TextStyle(
+        fontSize: 24.0,
       ),
     ),
-    SizedBox(
-      height: 15.0,
-    ),
-    Center(
-      child: Text(
-        '${model.body}',
-        style: TextStyle(
-          fontSize: 14.0,
-        ),
+    SizedBox(height: 20,),
+    Text(
+      '${model.body}',
+      style: TextStyle(
+        fontSize: 14.0,
       ),
-    ),
-    SizedBox(
-      height: 15.0,
     ),
   ],
 );

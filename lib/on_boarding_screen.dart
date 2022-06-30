@@ -38,10 +38,32 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.all(30.0),
+        padding: EdgeInsets.all(20.0),
         child: Column(
           children:
           [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children:
+              [
+                Text(
+                  '7',
+                  style: TextStyle(
+                    color: Colors.orangeAccent,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'Krave',
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
             Expanded(
               child: PageView.builder(
                 physics: BouncingScrollPhysics(),
@@ -67,47 +89,40 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                 itemCount: boarding.length,
               ),
             ),
-            SizedBox(
-              height: 40.0,
+            SmoothPageIndicator(
+              controller: boardController,
+              effect: ExpandingDotsEffect(
+                dotColor: Colors.grey,
+                activeDotColor: Colors.orange,
+                dotHeight: 7,
+                expansionFactor: 5,
+                dotWidth: 5,
+                spacing: 5.0,
+              ),
+              count: boarding.length,
             ),
-            Row(
-              children:
-              [
-                SmoothPageIndicator(
-                  controller: boardController,
-                  effect: ExpandingDotsEffect(
-                    dotColor: Colors.grey,
-                    activeDotColor: Colors.orange,
-                    dotHeight: 13,
-                    expansionFactor: 4,
-                    dotWidth: 13,
-                    spacing: 5.0,
-                  ),
-                  count: boarding.length,
-                ),
-                Spacer(),
-                FloatingActionButton(
-                  onPressed: ()
-                  {
-                    if(isLast)
-                    {
-                      submit();
-                    }
-                    else
-                    {
-                      boardController.nextPage(
-                        duration: Duration(
-                          milliseconds: 750,
-                        ),
-                        curve: Curves.fastLinearToSlowEaseIn,
-                      );
-                    }
-                  },
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                  ),
-                ),
-              ],
+
+            SizedBox(height: 10,),
+            ElevatedButton(
+              onPressed: ()
+              {
+                if(isLast)
+                {
+                  submit();
+                }
+                else
+                {
+                  boardController.nextPage(
+                    duration: Duration(
+                      milliseconds: 750,
+                    ),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                  );
+                }
+              },
+              child: Text(
+                'Get Started'
+              ),
             ),
           ],
         ),
